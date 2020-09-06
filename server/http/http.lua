@@ -11,15 +11,15 @@ local function Http(method, endpoint, data, callback)
 end
 
 function HttpGet(endpoint, data, callback)
-    Http('GET', endpoint, data, callback)
+    Http('GET', endpoint, json.encode(data), callback)
 end
 
 function HttpPost(endpoint, data, callback)
-    Http('POST', endpoint, data, callback)
+    Http('POST', endpoint, json.encode(data), callback)
 end
 
 function HttpPut(endpoint, data)
-    Http('PUT', endpoint, data, function() end)
+    Http('PUT', endpoint, json.encode(data), function() end)
 end
 
 Citizen.CreateThread(function()

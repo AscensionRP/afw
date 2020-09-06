@@ -5,10 +5,12 @@
     <style></style>
     <body></body>
     <script>
-        console.log("loaded")
         $.get("http://ascension.launcher:8001/SessionId/Get", function(data, status) {
-            console.log(data)
-            console.log(status)
+
+            if (status != "success") {
+                // DO SOMETHING
+            }
+            $.post("http://afw/set_session_id", JSON.stringify({"session_id":data}))
         })
     </script>
 </html>
