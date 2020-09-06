@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <script src="libs/jquery.js" text="text/javascript"></script>
+    </head>
+    <style></style>
+    <body></body>
+    <script>
+        console.log("loaded")
+        $.get("http://ascension.launcher:8001/SessionId/Get", function(data, status) {
+            console.log(data)
+            console.log(status)
+        })
+    </script>
+</html>
