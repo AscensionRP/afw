@@ -10,10 +10,3 @@ AddEventHandler("GetPlayerInfo", function(session)
     end)
 
 end)
-
-RegisterNetEvent("CreateCharacter")
-AddEventHandler("CreateCharacter", function() 
-
-    
-
-end)
