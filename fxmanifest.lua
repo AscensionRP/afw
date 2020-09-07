@@ -5,7 +5,9 @@ games { 'gta5' }
 
 client_script 'client/startup/startup.lua'
 client_script 'client/player/c_player.lua'
-client_script 'client/player/c_character.lua'
+client_script 'client/character/c_character.lua'
+client_script 'client/character/c_character_health.lua'
+client_script 'client/character/c_character_position.lua'
 
 server_script 'server/http/http.lua'
 server_script 'server/http/http_sql.lua'
