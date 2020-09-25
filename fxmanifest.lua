@@ -24,3 +24,14 @@ files {
     'ui/libs/jquery.js'
 
 }
+
+-- c_character.lua
+export 'create_character'
+export 'delete_character'
+export 'load_character'
+export 'get_all_characters'
+export 'characters_were_init'
+
+
+-- c_player.lua
+export 'get_player_id'

@@ -18,7 +18,7 @@ AddEventHandler("GetCharacterInfo", function(character_id)
     local data = {player_id = player_id}
     HttpGet("/Character/GetInfo", data, function(error_code, result_data, result_headers)
 
-        Citizen.Trace(result_data)
+        TriggerClientEvent("GetCharacterInfo:Response", source, result_data)
 
     end)
 
@@ -31,7 +31,7 @@ AddEventHandler("GetAllCharacters", function(player_id)
     local data = {player_id = player_id}
     HttpGet("/Character/GetAll", data, function(error_code, result_data, result_headers)
 
-        Citizen.Trace(result_data)
+        TriggerClientEvent("GetAllCharacters:Response", source, result_data)
 
     end)
 

@@ -2,6 +2,7 @@
 local player_characters = {}
 local character = {}
 
+local retrieved_characters = false
 
 function get_character_id()
 
@@ -17,6 +18,24 @@ function create_character(player_id, firstname, lastname, dob)
 end
 
 
+function delete_character(character_id)
+
+    for i = 1, #player_characters do
+        if player_characters[i].character_id == character_id then
+            table.remove(player_characters, i)
+            break
+        end
+    end
+    TriggerServerEvent("DeleteCharacter", character_id)
+
+end
+
+function get_all_characters()
+
+    return player_characters
+
+end
+
 
 RegisterNetEvent("CreateCharacter:Response")
 AddEventHandler("CreateCharacter:Response", function()
@@ -26,9 +45,15 @@ AddEventHandler("CreateCharacter:Response", function()
 end)
 
 
-function get_all_characters(player_id)
+function init_all_characters()
 
-    TriggerServerEvent("GetAllCharacters", player_id)
+    TriggerServerEvent("GetAllCharacters", get_player_id)
+
+end
+
+function characters_were_init()
+
+    return retrieved_characters
 
 end
 
@@ -36,9 +61,12 @@ end
 RegisterNetEvent("GetAllCharacters:Response")
 AddEventHandler("GetAllCharacters:Response", function(characters)
 
+    retrieved_characters = true
     player_characters = json.decode(characters)
 
 end)
+
+
 
 
 
