@@ -10,13 +10,12 @@ function get_character_id()
 
 end
 
-
 function create_character(player_id, firstname, lastname, dob)
 
+    player_characters[#player_characters + 1] = {player_id = player_id, firstname = firstname, lastname = lastname, dob = dob}
     TriggerServerEvent("CreateCharacter", player_id, firstname, lastname, dob)
 
 end
-
 
 function delete_character(character_id)
 
@@ -47,7 +46,8 @@ end)
 
 function init_all_characters()
 
-    TriggerServerEvent("GetAllCharacters", get_player_id)
+    retrieved_characters = false
+    TriggerServerEvent("GetAllCharacters", get_player_id())
 
 end
 
@@ -67,9 +67,6 @@ AddEventHandler("GetAllCharacters:Response", function(characters)
 end)
 
 
-
-
-
 function load_character(character_id)
 
     TriggerServerEvent("GetCharacterInfo", character_id)
@@ -79,6 +76,7 @@ end
 RegisterNetEvent("GetCharacterInfo:Response")
 AddEventHandler("GetCharacterInfo:Response", function(characters)
 
+    assert(characters, "GetCharacterInfo:Response received nil characters")
     character = json.decode(characters)
     set_character_health(character["health"])
     set_character_position(character["position"])
